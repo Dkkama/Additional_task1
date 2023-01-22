@@ -1,0 +1,35 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static int[] Exercisel(int[] num)
+    {
+        int n = num.Length;
+        int[] L = new int[n];
+        int[] R = new int[n];
+        int[] ans = new int[n];
+        L[0] = 1;
+        for (int i = 1; i < n; i++)
+        {
+            L[i] = L[i - 1] * num[i - 1];
+        }
+        R[n - 1] = 1;
+        for (int i = n - 2; i >= 0; i--)
+        {
+            R[i] = R[i + 1] * num[i + 1];
+        }
+        for (int i = 0; i < n; i++)
+        {
+            ans[i] = L[i] * R[i];
+        }
+        return ans;
+    }
+
+    static void Main(string[] args)
+    {
+        int[] num = new int[] { 1, 2, 3, 4 };
+        int[] ans = Exercisel(num);
+        Console.WriteLine(string.Join(",", ans));
+    }
+}
